@@ -28,10 +28,17 @@ function processFirstItem(stringList, callback) {
  * 
  * 1. What is the difference between counter1 and counter2?
  * 
+ * counter1 calls the function inside counterMaker and uses a block scope. counter2 uses global scope.
+ * 
  * 2. Which of the two uses a closure? How can you tell?
+ * 
+ * counter2 uses a closure, it has access to the count variable
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
  *
+ * counter1 takes up less memory and would be
+ * preferable if count only needs to be accesssed by one function. counter2 takes less code.
+ * 
 */
 
 // counter1 code
@@ -39,18 +46,22 @@ function counterMaker() {
   let count = 0;
   return function counter() {
     count++;
-  }
-}
+  };
+};
 
 const counter1 = counterMaker();
-
+console.log(counter1());
+console.log(counter1());
+console.log(counter1());
 // counter2 code
 let count = 0;
 
 function counter2() {
   return count++;
 }
-
+console.log(counter2());
+console.log(counter2());
+console.log(counter2());
 
 /* Task 2: inning() 
 
