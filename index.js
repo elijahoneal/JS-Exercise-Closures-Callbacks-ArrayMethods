@@ -92,13 +92,17 @@ finalScore(inning, 9) might return:
 
 function finalScore( callback , innings){
   let score = [];
-for (let index = 0; index < innings; index++) {
-  score.push(callback());
-  
-}
+    function scoreCount () {
+      for (let index = 0; index < innings; index++) {
+        score.push(callback());
+      };
+      let final = score.reduce( (acc, cur) => acc + cur );
+      return final;
+    }
     
-  let homeScore = score.reduce( (acc, cur) => acc + cur );
-  let awayScore = callback();
+    
+  let homeScore =scoreCount();
+  let awayScore = scoreCount();
 
   
   console.log(`Home: ${homeScore}`);
@@ -131,8 +135,17 @@ and returns the score at each pont in the game, like so:
 
 Final Score: awayTeam - homeTeam */
 
-function scoreboard(/* CODE HERE */) {
+function scoreboard(getInningScore , inning , numOfInning) {
   /* CODE HERE */
-}
+      let homeTeam = inning;
+      let awayTeam = inning;
+      getInningScore = `awayTeam:${awayTeam} - homeTeam:${homeTeam}`;
+      for (let index = 0; index < numOfInning; index++) {
+        console.log(getInningScore);
+      }
+      
+
+  };
+scoreboard(' 1st', inning(), 9);
 
 
